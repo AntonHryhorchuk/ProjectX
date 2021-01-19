@@ -19,15 +19,15 @@ export default {
    props:{
            width: {
       type: [Number, String],
-      default: 18
+      default: 20
     },
     height: {
       type: [Number, String],
-      default: 18
+      default: 22
     },
     iconColor: {
       type: String,
-      default: '#0D0B0A'
+      default: 'rgb(212, 109, 109)'
     }
    }
 }

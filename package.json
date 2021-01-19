@@ -2,6 +2,7 @@
   "name": "trade-project",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -13,6 +14,7 @@
     "ant-design-vue": "^1.7.2",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "scss": "^0.2.4",
     "swiper": "^6.4.5",
     "uimini": "^1.1.3",
     "unirest": "^0.6.0",

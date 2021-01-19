@@ -1,7 +1,9 @@
 <template>
     <div class="content-wrapper content-wrapper--sidebar content-wrapper--fix-header">
         <Card v-bind:CardData="filteredItems" ></Card>
+        <a-back-top />
     </div>
+    
 </template>
 
 <script>

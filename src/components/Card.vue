@@ -77,6 +77,7 @@ export default {
       visible: false,
       prodTitle: " ",
       prodPrice: " ",
+      prodImg: " ",
       picsArr: [],
     };
   },
@@ -124,7 +125,8 @@ export default {
     onClick(item) {
     console.log(item.title);
     this.prodTitle=item.title;
-    this.prodPrice=item.price;
+    this.prodPrice=item.price*1.18;
+    this.prodImg=item.pics[0];
     this.picsArr=item.pics;
     this.showModal();
 
@@ -182,6 +184,12 @@ export default {
   width: 100%;
   max-width: 230px;
   min-height: 440px;
+}
+@media screen and (max-width: 768px){
+  .ui-card {   
+    width: 400px;
+    height: auto;
+  }
 }
 .ui-card:hover {
   transform: scale(1.02);

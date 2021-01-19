@@ -5,8 +5,9 @@
         class="sidebar-item"
         v-for="(title, index) in SideBarData"
         v-bind:key="index"
+        @click="active = active === title ? null :title"
       >
-        <span v-on:click="text" :id="title.ID">{{ title.Title }}</span>
+        <span v-on:click="text" :id="title.ID" :class="active === title ? 'active' : ''">{{ title.Title }}</span>
         <hr noshade />
       </li>
     </ul>
@@ -15,8 +16,13 @@
 
 <script>
 
-export default {
 
+export default {
+data(){
+  return{
+active: null,
+  };
+},
   props: ["SideBarData"],
   methods: {
     text: function(params) {
@@ -39,5 +45,8 @@ export default {
 }
 p {
   margin: 0;
+}
+.active{
+  color: red;
 }
 </style>
