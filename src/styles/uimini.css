@@ -278,7 +278,7 @@ section,
 .ui-title-4 {
   display: block;
   font-weight: normal;
-  color: #101010;
+  /* color: #101010; */
   margin-bottom: 0.4em;
 }
 .ui-title-1 {

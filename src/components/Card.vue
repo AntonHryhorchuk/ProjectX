@@ -9,8 +9,8 @@
     <div class="image-wrapper">
       <img :src="card.pics[0]" alt="" srcset="" />
       </div>
-      <p class="ui-title-1 center">{{ card.title }}</p>
-      <p class="ui-title-3">{{ Math.floor(card.price * 1.18) }}<span class="currency"> {{card.currency}}</span></p>
+      <p class=".ui-text-small center">{{ card.title }}</p>
+      <p class="ui-title-3">{{ Math.floor(card.price * 1.18) }} <span class="currency">{{card.currency}}</span></p>
       <p>{{ card.Производитель }}</p>
       <!-- modal -->
       <a-modal v-model="visible" :title="prodTitle" on-ok="handleOk">
@@ -167,6 +167,9 @@ export default {
 </script>
 
 <style lang="scss" scope>
+@import url('https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .holder {
   width: 100%;
   display: flex;
@@ -200,9 +203,12 @@ export default {
 .ui-card:last-child {
   margin-right: 0;
 }
-
-.ui-title-1 {
-  font-size: 12px !important;
+.ui-title-3 {
+ font-family: 'Josefin Sans', sans-serif;
+ color: rgb(26, 150, 15);
+}
+.currency{
+  color: rgb(56, 56, 55);
 }
 .button-primary {
   margin-right: 10px;
@@ -248,8 +254,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  
-
 }
 img{
  max-height: 290px;

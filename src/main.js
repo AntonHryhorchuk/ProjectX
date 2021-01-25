@@ -4,18 +4,18 @@ import router from "./router";
 import store from "./store";
 import uimini from "uimini";
 import "./styles/uimini.css";
-import Vuikit from 'vuikit';
-import VuikitIcons from '@vuikit/icons';
-import '@vuikit/theme';
-import "../node_modules/vuikit/";
+// import Vuikit from 'vuikit';
+// import VuikitIcons from '@vuikit/icons';
+// import '@vuikit/theme';
+// import "../node_modules/vuikit/";
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import Axios from 'axios';
 Vue.config.productionTip = false;
 
 Vue.use(Antd);
-Vue.use(Vuikit);
-Vue.use(VuikitIcons);
+// Vue.use(Vuikit);
+// Vue.use(VuikitIcons);
 
 new Vue({
   router,
