@@ -4,49 +4,57 @@
       class="ui-card ui-card--shadow-always"
       v-for="(card, index) in paginatedData"
       :key="index"
-      @click="onClick(card)"     
+      @click="onClick(card)"
     >
+    <div class="image-wrapper">
       <img :src="card.pics[0]" alt="" srcset="" />
+      </div>
       <p class="ui-title-1 center">{{ card.title }}</p>
-      <p class="ui-title-3">{{ Math.floor(card.price * 1.18) }}</p>
-      <span>{{ card.currency }}</span>
+      <p class="ui-title-3">{{ Math.floor(card.price * 1.18) }}<span class="currency"> {{card.currency}}</span></p>
       <p>{{ card.Производитель }}</p>
-          <!-- modal -->
-    <a-modal v-model="visible" :title=prodTitle on-ok="handleOk">
-      <template slot="footer">
-        <a-button key="back" @click="handleCancel">
-          Return
-        </a-button>
-        <a-button key="submit" type="primary" @click="handleOk1">
-          Добавить в корзину
-        </a-button>
-      </template>
-      <!-- carousel -->
-      <div class="carousel-wrapper">
-      <a-carousel autoplay  arrows>
-         <div
-      slot="prevArrow"
-      class="custom-slick-arrow"
-      style="left: 10px;zIndex: 1"
-    >
-    <div slot="nextArrow"  class="custom-slick-arrow" style="right: 10px">
-      <a-icon type="right-circle" />
+      <!-- modal -->
+      <a-modal v-model="visible" :title="prodTitle" on-ok="handleOk">
+        <template slot="footer">
+          <a-button key="back" @click="handleCancel">
+            Return
+          </a-button>
+          <a-button key="submit" type="primary" @click="handleOk1">
+            Добавить в корзину
+          </a-button>
+        </template>
+        <!-- carousel -->
+        <div class="carousel-wrapper">
+          <a-carousel autoplay arrows>
+            <div
+              slot="prevArrow"
+              class="custom-slick-arrow"
+              style="left: 10px;zIndex: 1"
+            >
+              <div
+                slot="nextArrow"
+                class="custom-slick-arrow"
+                style="right: 10px"
+              >
+                <a-icon type="right-circle" />
+              </div>
+              <a-icon type="left-circle" />
+            </div>
+            <div
+              class="image-holder"
+              v-for="(pic, index) in picsArr"
+              :key="index"
+            >
+              <img class="prodimg" :src="pic" />
+            </div>
+          </a-carousel>
+        </div>
+        <!-- end carousel -->
+        <p>{{ prodTitle }}</p>
+        <p>{{ prodPrice }}</p>
+      </a-modal>
+      <!-- end modal -->
     </div>
-      <a-icon type="left-circle" />
-    </div>
-    <div class="image-holder" v-for="(pic, index) in picsArr" :key="index">
-      <img class="prodimg" :src="pic">
-    </div>   
-  </a-carousel>
-  </div>
-     <!-- end carousel -->
-      <p>{{prodTitle}}</p>
-      <p>{{prodPrice}}</p>     
-    </a-modal>
-    <!-- end modal -->
-      
-    </div>
-    
+
     <div class="nav-content">
       <div
         class="button button--plain button-primary"
@@ -67,8 +75,6 @@
 </template>
 
 <script>
-
-
 export default {
   data() {
     return {
@@ -81,24 +87,21 @@ export default {
       picsArr: [],
     };
   },
-  components: {
-    
-  },
+  components: {},
   props: {
     CardData: {
       type: Array,
-      required: true
+      required: true,
     },
     size: {
       type: Number,
       required: false,
-      default: 20
-    }
+      default: 20,
+    },
   },
   methods: {
     showModal() {
       this.visible = true;
-      
     },
     handleOk1() {
       this.loading = true;
@@ -106,6 +109,7 @@ export default {
         this.visible = false;
         this.loading = false;
       }, 3000);
+     
     },
     handleCancel() {
       this.visible = false;
@@ -123,14 +127,13 @@ export default {
       this.goUp();
     },
     onClick(item) {
-    console.log(item.title);
-    this.prodTitle=item.title;
-    this.prodPrice=item.price*1.18;
-    this.prodImg=item.pics[0];
-    this.picsArr=item.pics;
-    this.showModal();
-
-  },
+      console.log(item.title);
+      this.prodTitle = item.title;
+      this.prodPrice = item.price * 1.18;
+      this.prodImg = item.pics[0];
+      this.picsArr = item.pics;
+      this.showModal();
+    },
     goUp() {
       let top = Math.max(
         document.body.scrollTop,
@@ -140,10 +143,8 @@ export default {
         window.scrollBy(0, -2000);
         this.timeOut = setTimeout("goUp()", 20);
       } else clearTimeout(this.timeOut);
-    }
+    },
   },
-  
- 
 
   computed: {
     pageCount() {
@@ -160,12 +161,12 @@ export default {
         arr[i].pics = arrayOfStrings;
       }
       return arr;
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style>
+<style lang="scss" scope>
 .holder {
   width: 100%;
   display: flex;
@@ -185,8 +186,8 @@ export default {
   max-width: 230px;
   min-height: 440px;
 }
-@media screen and (max-width: 768px){
-  .ui-card {   
+@media screen and (max-width: 768px) {
+  .ui-card {
     width: 400px;
     height: auto;
   }
@@ -215,7 +216,7 @@ export default {
   padding: 10px;
 }
 
-.image-holder{
+.image-holder {
   width: 100%;
   display: flex;
   align-items: center;
@@ -223,22 +224,34 @@ export default {
   max-width: 500px;
   object-fit: contain;
 }
-.prodimg{
+.prodimg {
   width: 300px;
- /* height: 300px; */
-} 
-.prodimg>img{
+  /* height: 300px; */
+}
+.prodimg > img {
   object-fit: cover;
 }
-.custom-slick-arrow .slick-arrow slick-prev{
+.custom-slick-arrow .slick-arrow slick-prev {
   color: black !important;
 }
-.ant-carousel .slick-dots li{
+.ant-carousel .slick-dots li {
   background-color: black;
 }
-.carousel-wrapper{
+.carousel-wrapper {
   width: 300px;
   margin-left: auto;
   margin-right: auto;
+}
+.image-wrapper{
+  width: 100%;
+  height: 290px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+
+}
+img{
+ max-height: 290px;
 }
 </style>

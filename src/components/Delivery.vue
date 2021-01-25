@@ -1,13 +1,6 @@
 <template>
   <div>
-    <a-button type="primary" @click="showModal">
-      Open Modal
-    </a-button>
-    <a-modal v-model="visible" title="Basic Modal" @ok="handleOk">
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-    </a-modal>
+  
     
   </div>
 </template>
