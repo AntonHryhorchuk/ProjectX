@@ -7,32 +7,10 @@
             <div class="logo-wrapper">
               <the-logo />
               <p class="header-logo tracking-in-expand">Dishes Mag</p>
-            </div>
-            <div class="swiper__card">
-              <a-carousel class="currency" :dots="false" :autoplay="true">
-                <div
-                  class="card"
-                  v-for="card in infoBank.data"
-                  :key="card.index"
-                >
-                  <div class="card__currency">{{ card.ccy }}</div>
-                  <div class="card__value">
-                    <div class="card__value--buy">
-                      <span class="card__value-text">BUY </span
-                      >{{ Math.ceil(card.buy * 100) / 100
-                      }}<span class="card__value-text"> UAH</span>
-                    </div>
-                    <div class="card__value--sale">
-                      <span class="card__value-text">SALE </span
-                      >{{ Math.ceil(card.sale * 100) / 100
-                      }}<span class="card__value-text"> UAH</span>
-                    </div>
-                  </div>
-                </div>
-              </a-carousel>
-            </div>
+            </div>            
+              <exchange-carousel />              
             <div name="city" class="city">
-              <p class="city__text">{{ currentIpGeo }}</p>
+              <p class="city__text">{{ currentLocation }}</p>
             </div>
             <div class="weather">
               <span class="weather__text">
@@ -58,12 +36,12 @@
             </a-drawer>
             <div class="navbar-list__wrapper">
               <ul class="navbar-list">
-                <li class="navbar-item">
+                <li class="navbar-item" v-on:click="isHide">
                   <router-link
                     to="/catalogue"
                     class="navbar-link"
-                    active-class="active"
-                    :click='isVisible'
+                    active-class="active-link"
+                    
                     >Catalog</router-link
                   >
                 </li>
@@ -71,7 +49,7 @@
                   <router-link
                     to="/delivery"
                     class="navbar-link"
-                    active-class="active"
+                    active-class="active-link"
                     >Delivery</router-link
                   >
                 </li>
@@ -79,7 +57,7 @@
                   <router-link
                     to="/about"
                     class="navbar-link"
-                    active-class="active"
+                    active-class="active-link"
                     >About Us</router-link
                   >
                 </li>
@@ -121,6 +99,7 @@ import categ from "./db/data2.json";
 import TheLogo from "./assets/icons/TheLogo.vue";
 import IconCelsium from "./assets/icons/IconCelsium.vue";
 import TheBasket from "./assets/icons/TheBasket.vue";
+import ExchangeCarousel from './components/ExchangeCarousel.vue';
 
 export default {
   data() {
@@ -128,7 +107,7 @@ export default {
       categoryes: categ.list,
       select_id: "15051",
       infoBank: "",
-      currentIpGeo: "",
+      currentLocation: "",
       ipUser: "",
       weatherTemp: "",
       token: "41ae0f1ab65beed63397c4a225017ba2",
@@ -136,23 +115,20 @@ export default {
       visible: false,
       placement: "right",
       BuyArr: [],
-      isSideVisible: true,
+      isSideVisible: false,
     };
   },
   created() {
     let axios = require("axios");
-    axios
-      .get("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
-      .then((response) => (this.infoBank = response));
     axios.get("https://api.ipify.org?format=json").then((response) => {
       this.ipUser = response.data.ip;
       axios
         .get(`https://api.2ip.ua/geo.json?ip=${this.ipUser}`)
         .then((response) => {
-          this.currentIpGeo = response.data.city;
+          this.currentLocation = response.data.city;
           axios
             .get(
-              `https://api.openweathermap.org/data/2.5/weather?q=${this.currentIpGeo}&appid=${this.token}&units=metric`
+              `https://api.openweathermap.org/data/2.5/weather?q=${this.currentLocation}&appid=${this.token}&units=metric`
             )
             .then((response) => {
               this.weatherTemp = response.data.main;
@@ -167,11 +143,14 @@ export default {
     TheLogo,
     IconCelsium,
     TheBasket,
+    ExchangeCarousel,
   },
   methods: {
-    isVisible(){
+    isHide(){
 this.isSideVisible=true;
-console.log(this.isSideVisible)
+    },
+    isVisible(){
+this.isSideVisible=false;
     },
     showDrawer() {
       this.visible = true;
