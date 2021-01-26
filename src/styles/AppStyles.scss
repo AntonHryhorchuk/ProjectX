@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Potta+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap");
+@-webkit-keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.tracking-in-expand {
+  -webkit-animation: tracking-in-expand 6s cubic-bezier(0.215, 0.61, 0.355, 1)
+    infinite both;
+  animation: tracking-in-expand 6s cubic-bezier(0.215, 0.61, 0.355, 1) infinite
+    both;
+}
+.header-logo {
+  display: block;
+  font-family: "Potta One", cursive;
+  font-size: 18px;
+  margin: 0 0 0 5px;
+  width: 100%;
+  max-width: 120px;
+}
+.swiper__card {
+  width: 100%;
+  max-width: 250px;
+  height: 80px;
+}
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  max-width: 200px;
+}
+
+.card {
+  padding: 20px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  max-width: 250px;
+  height: 100%;
+  margin-right: 0;
+  &__currency {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Yanone Kaffeesatz", sans-serif;
+    font-size: 22px;
+    color: rgb(131, 133, 131);
+  }
+  &__value {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Teko", sans-serif;
+    font-size: 16px;
+    color: rgb(212, 109, 109);
+    &-text {
+      color: darkgrey;
+    }
+  }
+}
+
+.ant-carousel .slick-slider .slick-initialized {
+  height: 100%;
+}
+.weather {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__icon {
+    width: 75px;
+  }
+  &__text {
+    font-family: "Teko", sans-serif;
+    font-size: 22px;
+    color: rgb(61, 218, 132);
+  }
+}
+.weather__celsium{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-59%);
+  left: 28px;
+}
+@media screen and (max-width: 768px) {
+  .city {
+    display: none;
+  }
+  .weather {
+    display: none;
+  }
+  .currency {
+    display: none;
+  }
+}
+@media screen and (max-width: 991px) {
+  .weather {
+    display: none;
+  }
+}
+.active {
+  color: yellowgreen;
+}
+.city__text {
+  font-family: "Teko", sans-serif;
+  font-size: 22px;
+  color: rgb(61, 218, 132);
+  margin-bottom: 0px;
+}

@@ -1,0 +1,12 @@
+.sidebar-item {
+    cursor: pointer;
+  }
+  .sidebar-item:hover {
+    filter: brightness(50%);
+  }
+  p {
+    margin: 0;
+  }
+  .active{
+    color: red;
+  }

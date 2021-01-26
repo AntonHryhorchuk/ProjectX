@@ -62,7 +62,7 @@
 </template>
 
 <script>
-
+import "../styles/CradStyles.scss";
 export default {  
   data() {
     return {
@@ -154,101 +154,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
-@import url('https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-.holder {
-  width: 100%;
-  display: flex;
-  width: 100%;
-  padding: 20px;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.ui-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 5px 0px 5px 5px;
-  width: 100%;
-  max-width: 230px;
-  min-height: 440px;
-}
-@media screen and (max-width: 768px) {
-  .ui-card {
-    width: 400px;
-    height: auto;
-  }
-}
-.ui-card:hover {
-  transform: scale(1.02);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.ui-card:last-child {
-  margin-right: 0;
-}
-.ui-title-3 {
- font-family: 'Josefin Sans', sans-serif;
- color: rgb(26, 150, 15);
-}
-.currency{
-  color: rgb(56, 56, 55);
-}
-.button-primary {
-  margin-right: 10px;
-}
-.nav-content {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-
-.image-holder {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 500px;
-  object-fit: contain;
-}
-.prodimg {
-  width: 300px; 
-}
-.prodimg > img {
-  object-fit: cover;
-}
-.custom-slick-arrow .slick-arrow slick-prev {
-  color: black !important;
-}
-.ant-carousel .slick-dots li {
-  background-color: black;
-}
-.carousel-wrapper {
-  width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.image-wrapper{
-  width: 100%;
-  height: 290px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-img{
- max-height: 290px;
-}
-.modal__price{
- font-family: 'Roboto', sans-serif; 
- font-size: 24px;
- font-weight: 600;
- color: rgb(71, 121, 30);
-}
-</style>

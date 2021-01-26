@@ -15,7 +15,7 @@
 </template>
 
 <script>
-
+import "../styles/SideBarStyles.scss"
 
 export default {
 data(){
@@ -35,18 +35,3 @@ active: null,
 };
 </script>
 
-<style>
-
-.sidebar-item {
-  cursor: pointer;
-}
-.sidebar-item:hover {
-  filter: brightness(50%);
-}
-p {
-  margin: 0;
-}
-.active{
-  color: red;
-}
-</style>
