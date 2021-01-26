@@ -13,8 +13,8 @@ export default new Vuex.Store({
     SetGroup (state, value) {
       state.groupID=value;
     },
-    AddItem (state,id,img,text,price){
-      state.basketItems.push({id,img,text,price});
+    AddItem (state,img,text,price){
+      state.basketItems.push({img,text,price});
     }
   },
   actions: {},

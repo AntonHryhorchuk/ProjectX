@@ -63,6 +63,7 @@
                     to="/catalogue"
                     class="navbar-link"
                     active-class="active"
+                    :click='isVisible'
                     >Catalog</router-link
                   >
                 </li>
@@ -96,7 +97,7 @@
     <div class="sidebar-open-button">
     
     </div>
-    <div class="sidebar">
+    <div class="sidebar" v-if="isSideVisible">
       <div class="container">
         <div class="sidebar-content">
           <p class="ui-text-small">Categories:</p>
@@ -133,6 +134,7 @@ export default {
       visible: false,
       placement: "right",
       BuyArr: [],
+      isSideVisible: true,
     };
   },
   created() {
@@ -157,6 +159,7 @@ export default {
         });
     });
   },
+  
   components: {
     SideBar,
     TheLogo,
@@ -164,6 +167,10 @@ export default {
     TheBasket,
   },
   methods: {
+    isVisible(){
+this.isSideVisible=true;
+console.log(this.isSideVisible)
+    },
     showDrawer() {
       this.visible = true;
     },

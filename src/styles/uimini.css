@@ -359,7 +359,6 @@ section,
 }
 .ui-text-small {
   font-size: 0.888888888888889rem;
-  color: #909399;
 }
 .ui-text-smaller {
   font-size: 0.777777777777778rem;
@@ -796,7 +795,7 @@ section,
 }
 .sidebar-item,
 .sidebar-link {
-  font-size: 1rem;
+  font-size: .8rem;
   color: #606266;
 }
 .sidebar-item:hover,

@@ -25,20 +25,7 @@
         <!-- carousel -->
         <div class="carousel-wrapper">
           <a-carousel autoplay arrows>
-            <div
-              slot="prevArrow"
-              class="custom-slick-arrow"
-              style="left: 10px;zIndex: 1"
-            >
-              <div
-                slot="nextArrow"
-                class="custom-slick-arrow"
-                style="right: 10px"
-              >
-                <a-icon type="right-circle" />
-              </div>
-              <a-icon type="left-circle" />
-            </div>
+          
             <div
               class="image-holder"
               v-for="(pic, index) in picsArr"
@@ -49,8 +36,8 @@
           </a-carousel>
         </div>
         <!-- end carousel -->
-        <p>{{ prodTitle }}</p>
-        <p>{{ prodPrice }}</p>
+        <div class="modal__description" v-html="itemDescription"></div>
+        <p class="modal__price">{{ `${Math.floor(prodPrice)} UAH` }}</p>
       </a-modal>
       <!-- end modal -->
     </div>
@@ -75,7 +62,8 @@
 </template>
 
 <script>
-export default {
+
+export default {  
   data() {
     return {
       pageNumber: 0,
@@ -85,6 +73,7 @@ export default {
       prodPrice: " ",
       prodImg: " ",
       picsArr: [],
+      itemDescription: "",
     };
   },
   components: {},
@@ -108,14 +97,13 @@ export default {
       setTimeout(() => {
         this.visible = false;
         this.loading = false;
-      }, 3000);
-     
+      }, 1000);
+    //  add to basket list
     },
     handleCancel() {
       this.visible = false;
     },
-    handleOk(e) {
-      console.log(e);
+    handleOk() {
       this.visible = false;
     },
     nextPage() {
@@ -127,11 +115,11 @@ export default {
       this.goUp();
     },
     onClick(item) {
-      console.log(item.title);
       this.prodTitle = item.title;
       this.prodPrice = item.price * 1.18;
       this.prodImg = item.pics[0];
       this.picsArr = item.pics;
+      this.itemDescription= item.description;
       this.showModal();
     },
     goUp() {
@@ -231,8 +219,7 @@ export default {
   object-fit: contain;
 }
 .prodimg {
-  width: 300px;
-  /* height: 300px; */
+  width: 300px; 
 }
 .prodimg > img {
   object-fit: cover;
@@ -257,5 +244,11 @@ export default {
 }
 img{
  max-height: 290px;
+}
+.modal__price{
+ font-family: 'Roboto', sans-serif; 
+ font-size: 24px;
+ font-weight: 600;
+ color: rgb(71, 121, 30);
 }
 </style>
