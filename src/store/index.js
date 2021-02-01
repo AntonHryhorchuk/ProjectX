@@ -7,14 +7,14 @@ export default new Vuex.Store({
   state: {
     
          groupID: 15051 ,
-         basketItems: []  
+         basketItems: [{}]  
   },
   mutations: {
     SetGroup (state, value) {
       state.groupID=value;
     },
-    AddItem (state,img,text,price){
-      state.basketItems.push({img,text,price});
+    AddItem (state, payload){
+      state.basketItems.push(payload);
     }
   },
   actions: {},

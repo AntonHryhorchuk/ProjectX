@@ -1,4 +1,5 @@
 <template>
+<div>
   <svg
   version="1.0"
     :width="width"
@@ -6,8 +7,7 @@
     :fill="iconColor"
     viewBox="0 0 512 512"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <title />
+  >    
     <g data-name="1" id="_1">
       <path
         d="M397.78,316H192.65A15,15,0,0,1,178,304.33L143.46,153.85a15,15,0,0,1,14.62-18.36H432.35A15,15,0,0,1,447,153.85L412.4,304.33A15,15,0,0,1,397.78,316ZM204.59,286H385.84l27.67-120.48H176.91Z"
@@ -23,22 +23,33 @@
       />
     </g>
   </svg>
+ 
+</div>  
+
 </template>
 <script>
 export default {
   props: {
     width: {
       type: [Number, String],
-      default: 38,
+      default: 48,
     },
     height: {
       type: [Number, String],
-      default: 38,
+      default: 48,
     },
     iconColor: {
       type: String,
-      default: "#fff",
+      default: " #adafaa",
     },
   },
 };
 </script>
+
+<style scoped>
+svg:hover{
+  fill: #fff;
+  transition: all .3s ease;
+}
+
+</style>

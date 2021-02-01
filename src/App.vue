@@ -7,8 +7,8 @@
             <div class="logo-wrapper">
               <the-logo />
               <p class="header-logo tracking-in-expand">Dishes Mag</p>
-            </div>            
-              <exchange-carousel />              
+            </div>
+            <exchange-carousel />
             <div name="city" class="city">
               <p class="city__text">{{ currentLocation }}</p>
             </div>
@@ -36,16 +36,15 @@
             </a-drawer>
             <div class="navbar-list__wrapper">
               <ul class="navbar-list">
-                <li class="navbar-item" v-on:click="isHide">
+                <li class="navbar-item" v-on:click="isVisible">
                   <router-link
                     to="/catalogue"
                     class="navbar-link"
                     active-class="active-link"
-                    
                     >Catalog</router-link
                   >
                 </li>
-                <li class="navbar-item">
+                <li class="navbar-item" v-on:click="isVisible">
                   <router-link
                     to="/delivery"
                     class="navbar-link"
@@ -53,7 +52,7 @@
                     >Delivery</router-link
                   >
                 </li>
-                <li class="navbar-item">
+                <li class="navbar-item" v-on:click="isVisible">
                   <router-link
                     to="/about"
                     class="navbar-link"
@@ -62,9 +61,8 @@
                   >
                 </li>
                 <li class="navbar-item">
-                  <router-link to="/about" class="navbar-link"
-                    ><the-basket
-                  /></router-link>
+                  <the-basket/>
+                  <div class="circle"><p class="circle__digit">{{GetBasketCount}}</p></div>
                 </li>
               </ul>
             </div>
@@ -72,9 +70,7 @@
         </div>
       </div>
     </header>
-    <div class="sidebar-open-button">
-    
-    </div>
+    <div class="sidebar-open-button"></div>
     <div class="sidebar" v-if="isSideVisible">
       <div class="container">
         <div class="sidebar-content">
@@ -92,20 +88,19 @@
 </template>
 
 <script>
-import "./styles/AppStyles.scss"
+import "./styles/AppStyles.scss";
 
 import SideBar from "./components/SideBar";
 import categ from "./db/data2.json";
 import TheLogo from "./assets/icons/TheLogo.vue";
 import IconCelsium from "./assets/icons/IconCelsium.vue";
 import TheBasket from "./assets/icons/TheBasket.vue";
-import ExchangeCarousel from './components/ExchangeCarousel.vue';
-
+import ExchangeCarousel from "./components/ExchangeCarousel.vue";
 export default {
   data() {
     return {
       categoryes: categ.list,
-      select_id: "15051",
+      // select_id: "",
       infoBank: "",
       currentLocation: "",
       ipUser: "",
@@ -115,42 +110,41 @@ export default {
       visible: false,
       placement: "right",
       BuyArr: [],
-      isSideVisible: false,
+      isSideVisible: false
     };
   },
   created() {
     let axios = require("axios");
-    axios.get("https://api.ipify.org?format=json").then((response) => {
+    axios.get("https://api.ipify.org?format=json").then(response => {
       this.ipUser = response.data.ip;
       axios
         .get(`https://api.2ip.ua/geo.json?ip=${this.ipUser}`)
-        .then((response) => {
+        .then(response => {
           this.currentLocation = response.data.city;
           axios
             .get(
               `https://api.openweathermap.org/data/2.5/weather?q=${this.currentLocation}&appid=${this.token}&units=metric`
             )
-            .then((response) => {
+            .then(response => {
               this.weatherTemp = response.data.main;
               this.imagehref = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
             });
         });
     });
   },
-  
+
   components: {
     SideBar,
     TheLogo,
     IconCelsium,
     TheBasket,
     ExchangeCarousel,
-  },
+   },
   methods: {
-    isHide(){
-this.isSideVisible=true;
-    },
-    isVisible(){
-this.isSideVisible=false;
+    isVisible() {
+      this.$route.name === "Catalogue"
+        ? (this.isSideVisible = true)
+        : (this.isSideVisible = false);
     },
     showDrawer() {
       this.visible = true;
@@ -160,7 +154,32 @@ this.isSideVisible=false;
     },
     onChange(e) {
       this.placement = e.target.value;
-    },
+    }
   },
+  computed:{
+    GetBasketCount(){
+      return this.$store.state.basketItems.length;
+    }
+  }
 };
 </script>
+<style lang="scss" scoped>
+.circle{
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  right: 0;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__digit{
+    margin-bottom: 0px;
+  }
+}
+</style>

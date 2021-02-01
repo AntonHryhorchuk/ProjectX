@@ -4,7 +4,7 @@
     focusable="false"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
-     :width="width"
+    :width="width"
     :height="height"
     :fill="iconColor"
     viewBox="0 0 14 14"
@@ -16,19 +16,19 @@
 </template>
 <script>
 export default {
-   props:{
-           width: {
+  props: {
+    width: {
       type: [Number, String],
-      default: 20
+      default: 20,
     },
     height: {
       type: [Number, String],
-      default: 22
+      default: 22,
     },
     iconColor: {
       type: String,
-      default: 'rgb(212, 109, 109)'
-    }
-   }
-}
+      default: "rgb(212, 109, 109)",
+    },
+  },
+};
 </script>

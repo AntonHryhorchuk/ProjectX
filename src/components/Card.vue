@@ -13,7 +13,7 @@
       <p class="ui-title-3">{{ Math.floor(card.price * 1.18) }} <span class="currency">{{card.currency}}</span></p>
       <p>{{ card.Производитель }}</p>
       <!-- modal -->
-      <a-modal v-model="visible" :title="prodTitle" on-ok="handleOk">
+      <a-modal v-model="visible" :title="ProdObject.title" on-ok="handleOk">
         <template slot="footer">
           <a-button key="back" @click="handleCancel">
             Return
@@ -28,7 +28,7 @@
           
             <div
               class="image-holder"
-              v-for="(pic, index) in picsArr"
+              v-for="(pic, index) in ProdObject.imageArr"
               :key="index"
             >
               <img class="prodimg" :src="pic" />
@@ -36,8 +36,8 @@
           </a-carousel>
         </div>
         <!-- end carousel -->
-        <div class="modal__description" v-html="itemDescription"></div>
-        <p class="modal__price">{{ `${Math.floor(prodPrice)} UAH` }}</p>
+        <div class="modal__description" v-html="ProdObject.description"></div>
+        <p class="modal__price">{{ `${Math.floor(ProdObject.price)} UAH` }}</p>
       </a-modal>
       <!-- end modal -->
     </div>
@@ -69,12 +69,8 @@ export default {
       pageNumber: 0,
       timeOut: 0,
       visible: false,
-      prodTitle: " ",
-      prodPrice: " ",
-      prodImg: " ",
-      picsArr: [],
-      itemDescription: "",
-    };
+      ProdObject:{'image': "",'imageArr': "", 'article': "", 'title': "", 'price': "", 'description': "" },
+     };
   },
   components: {},
   props: {
@@ -98,10 +94,12 @@ export default {
         this.visible = false;
         this.loading = false;
       }, 1000);
-    //  add to basket list
+      this.$store.commit('AddItem', this.ProdObject);
+      console.log(this.$store.state.basketItems.length);
     },
     handleCancel() {
       this.visible = false;
+      localStorage.clear();
     },
     handleOk() {
       this.visible = false;
@@ -115,11 +113,14 @@ export default {
       this.goUp();
     },
     onClick(item) {
-      this.prodTitle = item.title;
-      this.prodPrice = item.price * 1.18;
-      this.prodImg = item.pics[0];
-      this.picsArr = item.pics;
-      this.itemDescription= item.description;
+      this.ProdObject={
+        image: item.pics[0],
+        imageArr: item.pics,
+        article: item.id,
+        title: item.title,
+        price: item.price * 1.18,
+        description: item.description
+      },     
       this.showModal();
     },
     goUp() {
@@ -150,6 +151,7 @@ export default {
       }
       return arr;
     },
+   
   },
 };
 </script>
