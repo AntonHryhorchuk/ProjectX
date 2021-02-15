@@ -84,6 +84,8 @@
     >
       <router-view />
     </div>
+    <login-button />
+    <contacts-button />
   </div>
 </template>
 
@@ -96,6 +98,8 @@ import TheLogo from "./assets/icons/TheLogo.vue";
 import IconCelsium from "./assets/icons/IconCelsium.vue";
 import TheBasket from "./assets/icons/TheBasket.vue";
 import ExchangeCarousel from "./components/ExchangeCarousel.vue";
+import LoginButton from './components/LoginButton.vue';
+import ContactsButton from './components/ContactsButton.vue';
 export default {
   data() {
     return {
@@ -139,6 +143,8 @@ export default {
     IconCelsium,
     TheBasket,
     ExchangeCarousel,
+    LoginButton,
+    ContactsButton,
    },
   methods: {
     isVisible() {
