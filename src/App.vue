@@ -14,7 +14,7 @@
             </div>
             <div class="weather">
               <span class="weather__text">
-                {{ weatherTemp.temp }}
+                {{ Math.round(weatherTemp.temp) }}
               </span>
               <icon-celsium class="weather__celsium" />
               <img :src="imagehref" class="weather__icon" alt="" />
@@ -23,17 +23,6 @@
               <span class="line line-1"></span><span class="line line-2"></span
               ><span class="line line-3"></span>
             </div>
-            <a-drawer
-              title="Basic Drawer"
-              :placement="placement"
-              :closable="false"
-              :visible="visible"
-              @close="onClose"
-            >
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-            </a-drawer>
             <div class="navbar-list__wrapper">
               <ul class="navbar-list">
                 <li class="navbar-item" v-on:click="isVisible">
@@ -61,8 +50,8 @@
                   >
                 </li>
                 <li class="navbar-item">
-                  <the-basket/>
-                  <div class="circle"><p class="circle__digit">{{GetBasketCount}}</p></div>
+                  <basket-modal />
+                  <div class="circle"><p class="circle__digit">{{GetBasketCount-1}}</p></div>
                 </li>
               </ul>
             </div>
@@ -96,15 +85,14 @@ import SideBar from "./components/SideBar";
 import categ from "./db/data2.json";
 import TheLogo from "./assets/icons/TheLogo.vue";
 import IconCelsium from "./assets/icons/IconCelsium.vue";
-import TheBasket from "./assets/icons/TheBasket.vue";
 import ExchangeCarousel from "./components/ExchangeCarousel.vue";
 import LoginButton from './components/LoginButton.vue';
 import ContactsButton from './components/ContactsButton.vue';
+import BasketModal from './components/BasketModal.vue';
 export default {
   data() {
     return {
       categoryes: categ.list,
-      // select_id: "",
       infoBank: "",
       currentLocation: "",
       ipUser: "",
@@ -141,10 +129,10 @@ export default {
     SideBar,
     TheLogo,
     IconCelsium,
-    TheBasket,
     ExchangeCarousel,
     LoginButton,
     ContactsButton,
+    BasketModal,
    },
   methods: {
     isVisible() {
@@ -164,7 +152,7 @@ export default {
   },
   computed:{
     GetBasketCount(){
-      return this.$store.state.basketItems.length;
+      return this.$store.state.basketCount;
     }
   }
 };
@@ -177,7 +165,7 @@ export default {
   border-radius: 50%;
   position: absolute;
   top: 3px;
-  right: 0;
+  right: 15px;
   font-size: 10px;
   font-weight: 600;
   color: #fff;

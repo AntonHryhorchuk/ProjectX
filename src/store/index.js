@@ -1,19 +1,22 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import firebase from "firebase";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    
-         groupID: 15051 ,
-         basketItems: [],
+        basketCount: "",
+         groupName: "",
+         groupID: "" ,
          user: null,
          error: null  
   },
   mutations: {
     SetGroup (state, value) {
       state.groupID=value;
+    },
+    SetGroupName (state, value){
+      state.groupName=value;
     },
     AddItem (state, payload){
       state.basketItems.push({payload});
@@ -23,20 +26,13 @@ export default new Vuex.Store({
     },
     setUser(state, payload) {
       state.user = payload;
+    },
+    Count(state,payload) {
+      state.basketCount = payload
     }
   },
   actions: {
-    signUpAction({ commit }, payload) {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(payload.email, payload.password)
-        .then(response => {
-          commit("setUser", response.user);
-        })
-        .catch(error => {
-          commit("setError", error.message);
-        });
-    }
+    
   },
   modules: {},
   getters:{

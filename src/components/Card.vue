@@ -1,5 +1,10 @@
 <template>
+<div class="content">
+  <div class="content__name">
+  <p>{{this.$store.state.groupName}}</p>
+  </div>
   <div class="holder tracking-in-contract-bck-bottom">
+    
     <div
       class="ui-card ui-card--shadow-always"
       v-for="(card, index) in paginatedData"
@@ -59,13 +64,17 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
+
 import "../styles/CradStyles.scss";
 export default {  
   data() {
     return {
+     
+      categoryName: "",
       pageNumber: 0,
       timeOut: 0,
       visible: false,
@@ -94,8 +103,10 @@ export default {
         this.visible = false;
         this.loading = false;
       }, 1000);
-      this.$store.commit('AddItem', this.ProdObject);
-      console.log(this.$store.state.basketItems.length);
+      localStorage.setItem(this.ProdObject.article,JSON.stringify(this.ProdObject));
+      console.log(this.$store.state.basketCount);
+      this.$store.commit("Count",localStorage.length);
+
     },
     handleCancel() {
       this.visible = false;
@@ -151,47 +162,7 @@ export default {
       }
       return arr;
     },
-   
   },
 };
 </script>
 
-<style lang="css" scoped>
-.tracking-in-contract-bck-bottom {
-	-webkit-animation: tracking-in-contract-bck-bottom 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-	        animation: tracking-in-contract-bck-bottom 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-}
-@-webkit-keyframes tracking-in-contract-bck-bottom {
-  0% {
-    letter-spacing: 1em;
-    -webkit-transform: translateZ(400px) translateY(300px);
-            transform: translateZ(400px) translateY(300px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    -webkit-transform: translateZ(0) translateY(0);
-            transform: translateZ(0) translateY(0);
-    opacity: 1;
-  }
-}
-@keyframes tracking-in-contract-bck-bottom {
-  0% {
-    letter-spacing: 1em;
-    -webkit-transform: translateZ(400px) translateY(300px);
-            transform: translateZ(400px) translateY(300px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    -webkit-transform: translateZ(0) translateY(0);
-            transform: translateZ(0) translateY(0);
-    opacity: 1;
-  }
-}
-
-</style>

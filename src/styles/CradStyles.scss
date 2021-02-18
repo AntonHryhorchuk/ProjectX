@@ -1,6 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
+.content__name {
+  position: fixed;
+  padding-left: 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  z-index: 100;
+}
 .holder {
   width: 100%;
   display: flex;
@@ -10,7 +18,6 @@
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-
 .ui-card {
   display: flex;
   flex-direction: column;
@@ -35,10 +42,10 @@
   margin-right: 0;
 }
 .ui-title-3 {
- font-family: 'Josefin Sans', sans-serif;
- color: rgb(26, 150, 15);
+  font-family: "Josefin Sans", sans-serif;
+  color: rgb(26, 150, 15);
 }
-.currency{
+.currency {
   color: rgb(56, 56, 55);
 }
 .button-primary {
@@ -52,7 +59,6 @@
   justify-content: center;
   padding: 10px;
 }
-
 .image-holder {
   width: 100%;
   display: flex;
@@ -62,7 +68,7 @@
   object-fit: contain;
 }
 .prodimg {
-  width: 300px; 
+  width: 300px;
 }
 .prodimg > img {
   object-fit: cover;
@@ -78,19 +84,57 @@
   margin-left: auto;
   margin-right: auto;
 }
-.image-wrapper{
+.image-wrapper {
   width: 100%;
   height: 290px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-img{
- max-height: 290px;
+img {
+  max-height: 290px;
 }
-.modal__price{
- font-family: 'Roboto', sans-serif; 
- font-size: 24px;
- font-weight: 600;
- color: rgb(71, 121, 30);
+.modal__price {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(71, 121, 30);
+}
+.tracking-in-contract-bck-bottom {
+  -webkit-animation: tracking-in-contract-bck-bottom 1s
+    cubic-bezier(0.215, 0.61, 0.355, 1) both;
+  animation: tracking-in-contract-bck-bottom 1s
+    cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
+@-webkit-keyframes tracking-in-contract-bck-bottom {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(400px) translateY(300px);
+    transform: translateZ(400px) translateY(300px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-contract-bck-bottom {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(400px) translateY(300px);
+    transform: translateZ(400px) translateY(300px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
 }

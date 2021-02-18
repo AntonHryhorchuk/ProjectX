@@ -25,6 +25,9 @@
     opacity: 1;
   }
 }
+body{
+  overflow-y: scroll;
+}
 .tracking-in-expand {
   -webkit-animation: tracking-in-expand 6s cubic-bezier(0.215, 0.61, 0.355, 1)
     infinite both;
