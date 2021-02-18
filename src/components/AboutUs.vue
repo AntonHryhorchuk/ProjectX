@@ -21,7 +21,9 @@
       inventore quibusdam, adipisci atque incidunt ad dolore reprehenderit ipsam
       unde rem doloremque, veritatis delectus?
     </p>
+    
   </div>
+  
 </template>
 
 <style scoped>

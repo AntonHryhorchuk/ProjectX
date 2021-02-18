@@ -21,13 +21,15 @@ export default {
  .social{
      position: fixed;
      left: -137px;
-     top: 100px;
+     top: 150px;
      width: 180px;
      height: 50px;
      background-color: darkgrey;
       display: flex;
      align-items: center;
      justify-content: space-around;
+     z-index: 99;
+     opacity: .8;
      &:hover{
         left: 0px;
         transition: all 1s ease; 

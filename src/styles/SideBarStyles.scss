@@ -1,5 +1,6 @@
 .sidebar-item {
     cursor: pointer;
+    
   }
   .sidebar-item:hover {
     filter: brightness(50%);
@@ -10,3 +11,35 @@
   .active{
     color: red;
   }
+  .sidebar-list>.menu-items{
+    line-height: 1.35;
+  }
+  .slide-in-left {
+    -webkit-animation: slide-in-left 2s ;
+            animation: slide-in-left 2s ;
+  }
+  @-webkit-keyframes slide-in-left {
+    0% {
+      -webkit-transform: translateX(-1000px);
+              transform: translateX(-1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-in-left {
+    0% {
+      -webkit-transform: translateX(-1000px);
+              transform: translateX(-1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  

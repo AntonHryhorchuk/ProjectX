@@ -1,6 +1,6 @@
 <template>
-  <div>
-     <h2>Lorem ipsum dolor sit amet.</h2>
+  <div class="delivery-text">
+    <h2>Lorem ipsum dolor sit amet.</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae natus
       cupiditate ratione vel consectetur provident quis. Repudiandae in quaerat
@@ -21,25 +21,18 @@
       inventore quibusdam, adipisci atque incidunt ad dolore reprehenderit ipsam
       unde rem doloremque, veritatis delectus?
     </p>
+    <h2>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Et aliquam ut
+      accusamus aperiam expedita sequi sint veniam temporibus voluptate! Totam
+      fuga ea qui voluptates vel illo rerum! Perferendis, iusto dignissimos.
+    </h2>
     
   </div>
 </template>
-<script>
+<script></script>
 
-export default {
-  data() {
-    return {
-      visible: false,
-    };
-  },
-  methods: {
-    showModal() {
-      this.visible = true;
-    },
-    handleOk(e) {
-      console.log(e);
-      this.visible = false;
-    },
-  },
-};
-</script>
+<style lang="scss" scoped>
+.delivery-text {
+  padding-top: 90px;
+}
+</style>

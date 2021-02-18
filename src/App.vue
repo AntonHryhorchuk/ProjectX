@@ -109,7 +109,6 @@ export default {
       currentLocation: "",
       ipUser: "",
       weatherTemp: "",
-      token: "41ae0f1ab65beed63397c4a225017ba2",
       imagehref: "",
       visible: false,
       placement: "right",
@@ -118,6 +117,7 @@ export default {
     };
   },
   created() {
+    console.log(process.env.VUE_APP_TOKEN);
     let axios = require("axios");
     axios.get("https://api.ipify.org?format=json").then(response => {
       this.ipUser = response.data.ip;
@@ -127,7 +127,7 @@ export default {
           this.currentLocation = response.data.city;
           axios
             .get(
-              `https://api.openweathermap.org/data/2.5/weather?q=${this.currentLocation}&appid=${this.token}&units=metric`
+              `https://api.openweathermap.org/data/2.5/weather?q=${this.currentLocation}&appid=${process.env.VUE_APP_TOKEN}&units=metric`
             )
             .then(response => {
               this.weatherTemp = response.data.main;
