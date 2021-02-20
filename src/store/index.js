@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-        basketCount: "",
+        basketCount: 0,
          groupName: "",
          groupID: "" ,
          user: null,

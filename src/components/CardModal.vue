@@ -5,7 +5,7 @@
             Return
           </a-button>
           <a-button key="submit" type="primary" @click="handleOk1">
-            Добавить в корзину
+            Add Item
           </a-button>
         </template>
         <!-- carousel -->
@@ -24,5 +24,6 @@
         <!-- end carousel -->
         <div class="modal__description" v-html="itemDescription"></div>
         <p class="modal__price">{{ ` ${Math.floor(prodPrice)} UAH` }}</p>
+        
       </a-modal>
 </template>

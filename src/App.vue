@@ -50,8 +50,12 @@
                   >
                 </li>
                 <li class="navbar-item">
-                  <basket-modal />
-                  <div class="circle"><p class="circle__digit">{{GetBasketCount-1}}</p></div>
+                  
+                  <a-badge :count="this.$store.state.basketCount">
+                    <basket-modal />
+      <!-- <div class="circle"><p class="circle__digit">{{GetBasketCount}}</p></div> -->
+    </a-badge>
+                  
                 </li>
               </ul>
             </div>
@@ -146,13 +150,12 @@ export default {
     onClose() {
       this.visible = false;
     },
-    onChange(e) {
-      this.placement = e.target.value;
-    }
+   
   },
   computed:{
     GetBasketCount(){
-      return this.$store.state.basketCount;
+      
+      return this.$store.state.basketCount
     }
   }
 };
@@ -175,5 +178,9 @@ export default {
   &__digit{
     margin-bottom: 0px;
   }
+}
+.ant-badge{
+  width: 70px;
+  height: 25px;
 }
 </style>
