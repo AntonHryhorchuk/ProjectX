@@ -43,7 +43,7 @@
       <div class="product-sum">
       <p>{{`Total sum ${sumvalue}  UAH`}}</p>
       </div>
-      <a-button v-if="sumvalue>0 && this.$store.getters.getUser" type="primary">
+      <a-button v-if="sumvalue>0 && this.$store.state.user" type="primary">
       Send an order
     </a-button>
     </a-modal>

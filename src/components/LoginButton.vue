@@ -1,10 +1,10 @@
 <template>
   <div class="login">
-    <div class="button-wrapper">
+    <div class="button-wrapper" >
       <button class="button-wrapper__button">
         <icon-login class="button-wrapper__button-icon" />
       </button>
-      <div class="button-wrapper__link-holder">
+      <div class="button-wrapper__link-holder" v-if="!this.$store.state.userMail">
         <a
           class="button-wrapper__link-holder--registration"
           @click="LoginDrawer"
@@ -12,6 +12,11 @@
         <a class="button-wrapper__link-holder--enter"
         @click="RegDrawer"
         >регистрация</a>
+      </div>
+      <div class="ExitDrawer" v-else>
+        <a class="button-wrapper__link-holder--enter"
+        @click="ExitDrawer"
+        >Выход</a>
       </div>
     </div>
     <a-drawer
@@ -42,21 +47,19 @@ export default {
       visible: false,
       drawerTitle: "",
       islogin: false,
-      isReg: false,
+      
 
     };
   },
   components: { IconLogin, FormLogin, FormRegistration },
   methods: {
     LoginDrawer() {
-      this.isReg = false;
       this.islogin = true;
       this.drawerTitle = "Login";
       this.showDrawer();
     },
     RegDrawer() {
       this.islogin = false;
-      this.isReg = true;
       this.drawerTitle = "Registration";
       this.showDrawer();
     },
@@ -69,6 +72,12 @@ export default {
     onClose() {
       this.islogin = false;
       this.visible = false;
+    },
+    ExitDrawer() {
+      this.$store.commit('setUserMail',null);
+      this.$store.commit('setUser',null);
+      console.log(this.$store.state.userMail)
+
     },
   },
 };

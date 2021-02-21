@@ -79,6 +79,7 @@
     </div>
     <login-button />
     <contacts-button />
+    <is-login />
   </div>
 </template>
 
@@ -93,6 +94,7 @@ import ExchangeCarousel from "./components/ExchangeCarousel.vue";
 import LoginButton from './components/LoginButton.vue';
 import ContactsButton from './components/ContactsButton.vue';
 import BasketModal from './components/BasketModal.vue';
+import IsLogin from './components/IsLogin.vue';
 export default {
   data() {
     return {
@@ -137,6 +139,7 @@ export default {
     LoginButton,
     ContactsButton,
     BasketModal,
+    IsLogin,
    },
   methods: {
     isVisible() {
@@ -161,24 +164,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.circle{
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  border-radius: 50%;
-  position: absolute;
-  top: 3px;
-  right: 15px;
-  font-size: 10px;
-  font-weight: 600;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &__digit{
-    margin-bottom: 0px;
-  }
-}
+
 .ant-badge{
   width: 70px;
   height: 25px;

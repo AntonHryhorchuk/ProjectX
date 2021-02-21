@@ -9,7 +9,8 @@ export default new Vuex.Store({
          groupName: "",
          groupID: "" ,
          user: null,
-         error: null  
+         error: null,
+         userMail: null,  
   },
   mutations: {
     SetGroup (state, value) {
@@ -29,7 +30,10 @@ export default new Vuex.Store({
     },
     Count(state,payload) {
       state.basketCount = payload
-    }
+    },
+    setUserMail(state,payload){
+      state.userMail = payload;
+    },
   },
   actions: {
     

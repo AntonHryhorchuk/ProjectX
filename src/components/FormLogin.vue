@@ -62,9 +62,12 @@ export default {
             .auth()
             .signInWithEmailAndPassword(values.email, values.password)
             .then((response) => {
-              console.log(response.user.email);
+              // console.log(response.user.email);
               this.$store.commit("setUser", response.user);
+              this.$store.commit("setUserMail", response.user.email);
               this.success(response.user.email);
+              console.log(this.$store.isUserAuth);
+
             })
             .catch((error) => {
               console.log(error.message)

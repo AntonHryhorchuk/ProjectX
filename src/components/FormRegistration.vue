@@ -117,7 +117,7 @@ export default {
             .createUserWithEmailAndPassword(values.email, values.password)
             .then((response) => {
               console.log("Success! ", response);
-              this.success(response.message);
+              this.success(response.user.email);
             })
             .catch((error) => {
               console.log("Failed!", error);
