@@ -80,6 +80,16 @@
     <login-button />
     <contacts-button />
     <is-login />
+      <a-drawer
+      title="Catalogue"
+      placement="left"
+      :closable="true"
+      :visible="visible"
+      :after-visible-change="afterVisibleChange"
+      @close="onClose"
+    >
+     <side-bar :SideBarData="categoryes" />
+    </a-drawer>
   </div>
 </template>
 
@@ -111,7 +121,7 @@ export default {
     };
   },
   created() {
-    console.log(process.env.VUE_APP_TOKEN);
+    
     let axios = require("axios");
     axios.get("https://api.ipify.org?format=json").then(response => {
       this.ipUser = response.data.ip;

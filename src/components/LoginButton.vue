@@ -25,7 +25,6 @@
       placement="right"
       :closable="true"
       :visible="visible"
-      :after-visible-change="afterVisibleChange"
       @close="onClose"
     >
       <form-login v-if="islogin"></form-login>
@@ -47,25 +46,25 @@ export default {
       visible: false,
       drawerTitle: "",
       islogin: false,
-      
+      isReg: false,
 
     };
   },
   components: { IconLogin, FormLogin, FormRegistration },
   methods: {
     LoginDrawer() {
+      this.isReg = false;
       this.islogin = true;
       this.drawerTitle = "Login";
       this.showDrawer();
     },
     RegDrawer() {
       this.islogin = false;
+      this.isReg = true;
       this.drawerTitle = "Registration";
       this.showDrawer();
     },
-    afterVisibleChange(val) {
-      console.log("visible", val);
-    },
+   
     showDrawer() {
       this.visible = true;
     },
@@ -74,11 +73,9 @@ export default {
       this.visible = false;
     },
     ExitDrawer() {
-      this.$store.commit('setUserMail',null);
       this.$store.commit('setUser',null);
-      console.log(this.$store.state.userMail)
-
-    },
+      this.$store.commit('setUserMail',null);
+    }
   },
 };
 </script>

@@ -19,24 +19,7 @@
         ]"
       />
     </a-form-item>
-    <a-form-item v-bind="formItemLayout" label="Phone Number">
-      <a-input
-        v-decorator="[
-          'phone',
-          {
-            rules: [{ required: true, message: 'Please input your phone number!' }],
-          },
-        ]"
-        style="width: 100%"
-      >
-        <a-select
-          slot="addonBefore"
-          v-decorator="['prefix', { initialValue: '+380' }]"
-          style="width: 70px"
-        >          
-        </a-select>
-      </a-input>
-    </a-form-item>
+    
     <a-form-item label="Password" has-feedback>
       <a-input
         v-decorator="[

@@ -14,15 +14,18 @@ const routes = [
     component: Home
   },
   {
-    path: "/catalogue",
-    name: "Catalogue",
-    component: CardContainer
-  },
-  {
     path: "/delivery",
     name: "Delivery",
     component: Delivery
   },
+  {
+    path: "/catalogue",
+    name: "Catalogue",
+    component: CardContainer
+  },
+  
+  
+
   // {
   //   path: "/about",
   //   name: "About",
