@@ -59,7 +59,7 @@ import TheBasket from "../assets/icons/TheBasket.vue";
 export default {
   data() {
     return {
-      sumvalue: 0,
+      
       visible: false,
       basketArr: [],
     };
@@ -86,15 +86,11 @@ export default {
     },
     onChange() {
       localStorage.clear();
-      this.sumvalue = 0;
       this.basketArr.forEach((element) => {
-        this.sumvalue += Math.round(element.qty * element.price * 1.18);
         localStorage.setItem(element.article, JSON.stringify(element));
       });
     },
     ShowModal() {
-       this.sumvalue = 0;
-      
       console.log(localStorage.length);
       this.basketArr.length = 0;
       for (let key in localStorage) {
@@ -133,8 +129,12 @@ export default {
         xhttp.send();
 
         localStorage.clear();
-        this.basketArr.length=0;
-        this.sumvalue=0;
+        
+      this.basketArr.forEach((element) => {
+        localStorage.setItem(element.article, JSON.stringify(element));
+      });
+        
+        
 
 
    },
