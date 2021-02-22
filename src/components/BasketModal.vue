@@ -41,18 +41,21 @@
         </a-col>
       </a-row>
       <div class="product-sum">
-      <p>{{`Total sum ${sumvalue}  UAH`}}</p>
+        <p>{{ `Total sum ${sumvalue}  UAH` }}</p>
       </div>
-      <a-button v-if="sumvalue>0 && this.$store.state.user" type="primary">
-      Send an order
-    </a-button>
+      <a-button
+        v-if="sumvalue > 0 && this.$store.state.user"
+        type="primary"
+        @click="SendToFireBase"
+      >
+        Send an order
+      </a-button>
     </a-modal>
   </div>
 </template>
 
 <script>
 import TheBasket from "../assets/icons/TheBasket.vue";
-
 export default {
   data() {
     return {
@@ -72,23 +75,21 @@ export default {
       this.basketArr.splice(this.basketArr.indexOf(item), 1);
       localStorage.removeItem(item.article);
       this.$store.commit("Count", localStorage.length);
-      this.sumvalue=0;
-      this.basketArr.forEach(element => {
-       this.sumvalue+=Math.floor(element.qty*element.price*1.18);
-       
-     });
+      this.sumvalue = 0;
+      this.basketArr.forEach((element) => {
+        this.sumvalue += Math.round(element.qty * element.price * 1.18);
+      });
     },
     onChange() {
-     localStorage.clear();
-     this.sumvalue=0;
-     this.basketArr.forEach(element => {
-       this.sumvalue+=Math.floor(element.qty*element.price*1.18);
-       localStorage.setItem(element.article,JSON.stringify(element));
-     });
-     
+      localStorage.clear();
+      this.sumvalue = 0;
+      this.basketArr.forEach((element) => {
+        this.sumvalue += Math.round(element.qty * element.price * 1.18);
+        localStorage.setItem(element.article, JSON.stringify(element));
+      });
     },
     ShowModal() {
-      console.log(localStorage.length)
+      console.log(localStorage.length);
       this.basketArr.length = 0;
       for (let key in localStorage) {
         if (
@@ -103,18 +104,37 @@ export default {
           continue;
         } else {
           let product = JSON.parse(localStorage.getItem(key));
-          this.sumvalue=0;
-          this.sumvalue+=Math.floor(product.qty*product.price*1.18);
+          this.sumvalue = 0;
+          this.sumvalue += Math.round(product.qty * product.price * 1.18);
           this.basketArr.push(product);
-         
         }
-
       }
       this.visible = true;
-      
     },
-  },
-};
+    SendToFireBase() {
+      let text = `${this.$store.state.userMail} - `;
+      this.basketArr.forEach(element => {
+        text+=`${element.article} артикл : ${element.qty} шт : ${Math.round(element.price*1.18)} грн/шт `
+      });
+      text+=`  общая сумма ${this.sumvalue}`
+        console.log(this.basketArr[0]);
+        let xhttp = new XMLHttpRequest();
+        const chatId = process.env.VUE_APP_CHAT_ID;
+        console.log(process.env.VUE_APP_CHAT_ID);
+        let url = `https://api.telegram.org/bot${process.env.VUE_APP_BOT_TOKEN}/sendMessage?chat_id=${chatId}&text=${text}`
+
+        xhttp.open('GET',url,true);
+        xhttp.send();
+
+        localStorage.clear();
+        this.basketArr.length=0;
+        this.sumvalue=0;
+
+
+   },
+
+}
+}
 </script>
 <style lang="scss" scoped>
 .products__item {
@@ -164,7 +184,7 @@ img {
   align-items: center;
   justify-content: center;
 }
-.product-sum{
+.product-sum {
   margin-top: 30px;
   font-size: 22px;
   font-weight: 600;

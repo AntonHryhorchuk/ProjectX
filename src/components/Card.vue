@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <div class="content__name">
-      <p>{{ this.$store.state.groupName }}</p>
+    <div class="content__name ">
+      <p class="tracking-in-expand">{{ this.$store.state.groupName }}</p>
     </div>
     <div class="holder tracking-in-contract-bck-bottom">
       <div
@@ -15,7 +15,7 @@
         </div>
         <p class=".ui-text-small center">{{ card.title }}</p>
         <p class="ui-title-3">
-          {{ Math.floor(card.price * 1.18) }}
+          {{ Math.round(card.price * 1.18) }}
           <span class="currency">{{ card.currency }}</span>
         </p>
         <p>{{ card.Производитель }}</p>
@@ -121,7 +121,6 @@ export default {
         this.loading = false;
       }, 1000);
       this.ProdObject.qty = this.qty;
-
       localStorage.setItem(
         this.ProdObject.article,
         JSON.stringify(this.ProdObject)

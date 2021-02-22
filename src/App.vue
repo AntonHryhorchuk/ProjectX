@@ -6,7 +6,7 @@
           <div class="navbar-content">
             <div class="logo-wrapper">
               <the-logo />
-              <p class="header-logo tracking-in-expand">Dishes Mag</p>
+              <p class="header-logo .heartbeat">Dishes Mag</p>
             </div>
             <exchange-carousel />
             <div name="city" class="city">
@@ -50,12 +50,9 @@
                   >
                 </li>
                 <li class="navbar-item">
-                  
                   <a-badge :count="this.$store.state.basketCount">
                     <basket-modal />
-      <!-- <div class="circle"><p class="circle__digit">{{GetBasketCount}}</p></div> -->
-    </a-badge>
-                  
+                  </a-badge>
                 </li>
               </ul>
             </div>
@@ -80,15 +77,14 @@
     <login-button />
     <contacts-button />
     <is-login />
-      <a-drawer
+    <a-drawer
       title="Catalogue"
       placement="left"
       :closable="true"
       :visible="visible"
-      :after-visible-change="afterVisibleChange"
       @close="onClose"
     >
-     <side-bar :SideBarData="categoryes" />
+      <side-bar :SideBarData="categoryes" />
     </a-drawer>
   </div>
 </template>
@@ -101,10 +97,10 @@ import categ from "./db/data2.json";
 import TheLogo from "./assets/icons/TheLogo.vue";
 import IconCelsium from "./assets/icons/IconCelsium.vue";
 import ExchangeCarousel from "./components/ExchangeCarousel.vue";
-import LoginButton from './components/LoginButton.vue';
-import ContactsButton from './components/ContactsButton.vue';
-import BasketModal from './components/BasketModal.vue';
-import IsLogin from './components/IsLogin.vue';
+import LoginButton from "./components/LoginButton.vue";
+import ContactsButton from "./components/ContactsButton.vue";
+import BasketModal from "./components/BasketModal.vue";
+import IsLogin from "./components/IsLogin.vue";
 export default {
   data() {
     return {
@@ -117,23 +113,22 @@ export default {
       visible: false,
       placement: "right",
       BuyArr: [],
-      isSideVisible: false
+      isSideVisible: false,
     };
   },
   created() {
-    
     let axios = require("axios");
-    axios.get("https://api.ipify.org?format=json").then(response => {
+    axios.get("https://api.ipify.org?format=json").then((response) => {
       this.ipUser = response.data.ip;
       axios
         .get(`https://api.2ip.ua/geo.json?ip=${this.ipUser}`)
-        .then(response => {
+        .then((response) => {
           this.currentLocation = response.data.city;
           axios
             .get(
               `https://api.openweathermap.org/data/2.5/weather?q=${this.currentLocation}&appid=${process.env.VUE_APP_TOKEN}&units=metric`
             )
-            .then(response => {
+            .then((response) => {
               this.weatherTemp = response.data.main;
               this.imagehref = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
             });
@@ -150,7 +145,7 @@ export default {
     ContactsButton,
     BasketModal,
     IsLogin,
-   },
+  },
   methods: {
     isVisible() {
       this.$route.name === "Catalogue"
@@ -163,19 +158,16 @@ export default {
     onClose() {
       this.visible = false;
     },
-   
   },
-  computed:{
-    GetBasketCount(){
-      
-      return this.$store.state.basketCount
-    }
-  }
+  computed: {
+    GetBasketCount() {
+      return this.$store.state.basketCount;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
-
-.ant-badge{
+.ant-badge {
   width: 70px;
   height: 25px;
 }

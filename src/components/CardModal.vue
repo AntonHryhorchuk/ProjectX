@@ -23,7 +23,7 @@
         </div>
         <!-- end carousel -->
         <div class="modal__description" v-html="itemDescription"></div>
-        <p class="modal__price">{{ ` ${Math.floor(prodPrice)} UAH` }}</p>
+        <p class="modal__price">{{ ` ${Math.round(prodPrice)} UAH` }}</p>
         
       </a-modal>
 </template>

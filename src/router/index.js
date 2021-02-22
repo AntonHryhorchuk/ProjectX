@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../components/AboutUs.vue";
+import AboutUs from "../components/AboutUs.vue";
 import Delivery from "../components/Delivery.vue";
 import CardContainer from "../components/Catalogue.vue";
 
@@ -8,10 +8,11 @@ import CardContainer from "../components/Catalogue.vue";
 Vue.use(VueRouter);
 
 const routes = [
+  { path: '/', redirect: { name: 'AboutUs' }},
   {
     path: "/about",
-    name: "Home",
-    component: Home
+    name: "AboutUs",
+    component: AboutUs
   },
   {
     path: "/delivery",
