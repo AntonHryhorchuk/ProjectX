@@ -41,12 +41,12 @@
         </a-col>
       </a-row>
       <div class="product-sum">
-        <p>{{ `Total sum ${sumvalue}  UAH` }}</p>
+        <p>{{ `Total sum ${SummResult}  UAH` }}</p>
       </div>
       <a-button
         v-if="sumvalue > 0 && this.$store.state.user"
         type="primary"
-        @click="SendToFireBase"
+        @click="SendToTelegram"
       >
         Send an order
       </a-button>
@@ -67,7 +67,11 @@ export default {
   components: { TheBasket },
   computed: {
     SummResult: function() {
-      return this.basketArr.reduce((a, b) => a + b.summ, 0);
+      let sum = 0;
+      this.basketArr.forEach(element => {
+        sum+=Math.round(element.qty*element.price*1.18);
+      });
+      return sum;
     },
   },
   methods: {
@@ -89,6 +93,8 @@ export default {
       });
     },
     ShowModal() {
+       this.sumvalue = 0;
+      
       console.log(localStorage.length);
       this.basketArr.length = 0;
       for (let key in localStorage) {
@@ -111,7 +117,7 @@ export default {
       }
       this.visible = true;
     },
-    SendToFireBase() {
+    SendToTelegram() {
       let text = `${this.$store.state.userMail} - `;
       this.basketArr.forEach(element => {
         text+=`${element.article} артикл : ${element.qty} шт : ${Math.round(element.price*1.18)} грн/шт `
