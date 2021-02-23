@@ -1,7 +1,15 @@
 <template>
   <div class="container" @click="ShowModal">
     <the-basket />
-    <a-modal v-model="visible" :footer="null" title="Products">
+    <a-modal v-model="visible" title="Order list" on-ok="handleOk">
+      <template slot="footer">
+        <a-button key="back" @click="handleCancel">
+          Сontinue shopping
+        </a-button>
+        <a-button key="submit" type="primary" :loading="loading" @click="handleOk" :disabled="!this.$store.state.user || !SummResult">
+          Send an order
+        </a-button>
+      </template>
       <a-row v-for="(item, index) in basketArr" :key="index">
         <a-col :span="4">
           <div class="products__item-image">
@@ -41,16 +49,10 @@
         </a-col>
       </a-row>
       <div class="product-sum">
-        <p>{{ `Total sum ${SummResult}  UAH` }}</p>
-      </div>
-      <a-button
-        v-if="sumvalue > 0 && this.$store.state.user"
-        type="primary"
-        @click="SendToTelegram"
-      >
-        Send an order
-      </a-button>
+        <p v-if="basketArr.length">{{ `Total sum ${SummResult}  UAH` }}</p>
+      </div>      
     </a-modal>
+    
   </div>
 </template>
 
@@ -59,7 +61,7 @@ import TheBasket from "../assets/icons/TheBasket.vue";
 export default {
   data() {
     return {
-      
+      loading: false,
       visible: false,
       basketArr: [],
     };
@@ -75,6 +77,34 @@ export default {
     },
   },
   methods: {
+   handleOk() {
+     
+     this.SendToTelegram;
+      this.loading = true;
+      setTimeout(() => {
+        this.visible = false;
+        this.loading = false;
+      }, 3000);
+let text = `${this.$store.state.userMail} - `;
+      this.basketArr.forEach(element => {
+        text+=`${element.article} артикл : ${element.qty} шт : ${Math.round(element.price*1.18)} грн/шт `
+      });
+      text+=`  общая сумма ${this.SummResult}`
+        console.log(this.basketArr[0]);
+        let xhttp = new XMLHttpRequest();
+        const chatId = process.env.VUE_APP_CHAT_ID;
+        console.log(process.env.VUE_APP_CHAT_ID);
+        let url = `https://api.telegram.org/bot${process.env.VUE_APP_BOT_TOKEN}/sendMessage?chat_id=${chatId}&text=${text}`
+
+        xhttp.open('GET',url,true);
+        xhttp.send();
+        localStorage.clear();
+        this.basketArr.length=0;
+        console.log(this.$store.state.basketCount)
+    },
+    handleCancel() {
+      this.visible = false;
+    },
     deleteEvent: function(item) {
       this.basketArr.splice(this.basketArr.indexOf(item), 1);
       localStorage.removeItem(item.article);
@@ -118,7 +148,7 @@ export default {
       this.basketArr.forEach(element => {
         text+=`${element.article} артикл : ${element.qty} шт : ${Math.round(element.price*1.18)} грн/шт `
       });
-      text+=`  общая сумма ${this.sumvalue}`
+      text+=`  общая сумма ${this.SummResult}`
         console.log(this.basketArr[0]);
         let xhttp = new XMLHttpRequest();
         const chatId = process.env.VUE_APP_CHAT_ID;
@@ -128,11 +158,13 @@ export default {
         xhttp.open('GET',url,true);
         xhttp.send();
 
-        localStorage.clear();
         
-      this.basketArr.forEach((element) => {
-        localStorage.setItem(element.article, JSON.stringify(element));
-      });
+      // // this.basketArr.forEach((element) => {
+      // //   localStorage.setItem(element.article, JSON.stringify(element));
+      // //   this.visible = false;
+      // //   console.log("close")
+      // // }
+      // );
         
         
 
