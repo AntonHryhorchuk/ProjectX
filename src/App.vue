@@ -19,11 +19,7 @@
               <icon-celsium class="weather__celsium" />
               <img :src="imagehref" class="weather__icon" alt="" />
             </div>
-            <div class="button-burger" @click="showDrawer">
-              <span class="line line-1"></span><span class="line line-2"></span
-              ><span class="line line-3"></span>
-            </div>
-            <div class="navbar-list__wrapper">
+              <div class="navbar-list__wrapper">
               <ul class="navbar-list">
                 <li class="navbar-item" v-on:click="isVisible">
                   <router-link
@@ -55,6 +51,11 @@
                   </a-badge>
                 </li>
               </ul>
+              
+            </div>
+            <div class="button-burger" @click="showDrawer">
+              <span class="line line-1"></span><span class="line line-2"></span
+              ><span class="line line-3"></span>
             </div>
           </div>
         </div>
@@ -84,7 +85,7 @@
       :visible="visible"
       @close="onClose"
     >
-      <side-bar :SideBarData="categoryes" />
+    <side-bar :SideBarData="categoryes" />
     </a-drawer>
   </div>
 </template>

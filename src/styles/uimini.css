@@ -852,11 +852,16 @@ section,
 .navbar-list {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  display: flex;  
+}
+@media screen and (max-width: 480px) {
+  .navbar-list {
+    flex-direction: column;
+  }
 }
 @media screen and (max-width: 480px) {
   .navbar-list__wrapper {
-    display: none;
+    flex-direction: column;
   }
 }
 .navbar-list__wrapper.active {
@@ -1173,7 +1178,7 @@ pointer-events none {
 }
 .button-burger {
   position: relative;
-  width: 34px;
+  width: 70px;
   height: 16px;
   -webkit-transform: rotate(0deg);
       -ms-transform: rotate(0deg);
