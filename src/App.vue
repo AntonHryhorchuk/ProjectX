@@ -46,7 +46,7 @@
                   >
                 </li>
                 <li class="navbar-item">
-                  <a-badge :count="this.$store.state.basketCount">
+                  <a-badge :count="GetBasketCount">
                     <basket-modal />
                   </a-badge>
                 </li>

@@ -99,8 +99,9 @@ let text = `${this.$store.state.userMail} - `;
         xhttp.open('GET',url,true);
         xhttp.send();
         localStorage.clear();
+        this.$store.commit("Count", 0);
         this.basketArr.length=0;
-        console.log(this.$store.state.basketCount)
+        
     },
     handleCancel() {
       this.visible = false;
